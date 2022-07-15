@@ -92,7 +92,7 @@ const movies = [
   {
     release: "2004",
     imageurl:
-      "https://static.wikia.nocookie.net/harrypotter/images/a/a8/Harry_Potter_and_the_Prisoner_of_Azkaban_2.jpg/revision/latest?cb=20130803163319",
+      "https://static.wikia.nocookie.net/harrypotter/images/a/a8/Harry_Potter_and_the_Prisoner_of_Azkaban_2.jpg",
     description:
       "Harry Potter's (Daniel Radcliffe) third year at Hogwarts starts off badly when he learns deranged killer Sirius Black (Gary Oldman) has escaped from Azkaban prison and is bent on murdering the teenage wizard. While Hermione's (Emma Watson) cat torments Ron's (Rupert Grint) sickly rat, causing a rift among the trio, a swarm of nasty Dementors is sent to protect the school from Black. A mysterious new teacher helps Harry learn to defend himself, but what is his secret tie to Sirius Black?",
     title: "Harry Potter and the Prisoner of Azkaban",
@@ -180,5 +180,66 @@ const movies = [
   },
 ];
 
+document.title = "Movies-HW-4"
+// pageContainer
+let pageContainer = document.createElement("div");
+    pageContainer.classList.add("pageContainer")
+    document.body.appendChild(pageContainer);
+    pageContainer.style = "display: flex; flex-flow: row wrap; gap: 2rem; justify-content: center; align-items: center; width: 100%; height: auto; background: #2E2E2E; ";
 
-console.log(movies);
+let thumbnailCreator = (imageurl, title, genre, release, description, director) => {
+    let elementContainer = document.createElement("div");
+        elementContainer.classList.add("elementContainer")
+        pageContainer.appendChild(elementContainer);
+        elementContainer.style = "display: flex; flex-flow: row wrap; padding: 1rem; gap: 3rem; background: rgb(238,174,202); background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);"
+    
+        // Image CONTAINER + left(div)
+        let imageContainer = document.createElement("div");
+            imageContainer.classList.add("imgContainer-left-col")
+            elementContainer.appendChild(imageContainer);
+            imageContainer.style = "display:flex;  max-height:25rem; max-width:15rem;";
+      const imageElement = document.createElement("img");
+            imageElement.style = "height: 100%; width: 100%";
+              imageElement.src = imageurl;
+              imageContainer.appendChild(imageElement);
+              
+    
+        // Movie DETAILS CONTAINER + Right(div)
+        let movieDetailsContainer = document.createElement("div");
+            movieDetailsContainer.classList.add("detailsContainer-right-col")
+            elementContainer.appendChild(movieDetailsContainer);
+            movieDetailsContainer.style = "display:flex; flex-direction: column; align-items:center; gap: 20px; max-width:25rem"
+
+            let movieTitle = document.createElement("h2");
+            movieDetailsContainer.appendChild(movieTitle);
+            movieTitle.innerText = title;
+
+            let movieGenre = document.createElement("h2");
+            movieDetailsContainer.appendChild(movieGenre);
+            movieGenre.innerHTML = `Genre: ${genre.name}`;
+
+            let movieRelease = document.createElement("h2");
+            movieDetailsContainer.appendChild(movieRelease);
+            movieRelease.innerHTML = `Release date: ${release}`;
+
+            let movieDescription = document.createElement("h4");
+            movieDetailsContainer.appendChild(movieDescription);
+            movieDescription.innerHTML = description;
+
+            let movieDirector = document.createElement("h3");
+            movieDetailsContainer.appendChild(movieDirector);
+            movieDirector.innerHTML = `Director: ${director.name}`;
+}
+
+
+movies.map((movie) => {
+
+  const { imageurl, title, genre, release, description, director } = movie;
+  thumbnailCreator(imageurl, title, genre, release, description, director)
+})
+
+
+
+
+
+
