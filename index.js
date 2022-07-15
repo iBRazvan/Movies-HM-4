@@ -185,7 +185,57 @@ document.title = "Movies-HW-4"
 let pageContainer = document.createElement("div");
     pageContainer.classList.add("pageContainer")
     document.body.appendChild(pageContainer);
-    pageContainer.style = "display: flex; flex-flow: row wrap; gap: 2rem; justify-content: center; align-items: center; width: 100%; height: auto; background: #2E2E2E; ";
+    pageContainer.style = "display: flex; flex-flow: column wrap; gap: 2rem; justify-content: center; align-items: center; width: 100%; height: auto; background: #2E2E2E; ";
+
+// let contentContainer = document.createElement("div")
+//     pageContainer.appendChild("pageContainer")
+//     contentContainer.style = "display: flex; flex-flow: column wrap; gap: 2rem; justify-content: center; align-items: center;";
+
+// CREEARE BUTOANE FOLOSIND JS
+
+// let buttonsContainer = document.createElement("div");
+//     pageContainer.appendChild(buttonsContainer);
+//     buttonsContainer.style = "display:flex; gap: 1rem;"
+//     let genreTypes = ["Adventure", "ScienceFiction", "Fantasy", "AllMovies"];
+//     genreTypes.forEach((buttonName) => {
+//         let buttonElement = document.createElement("button");
+//             buttonsContainer.appendChild(buttonElement)
+//             buttonElement.innerHTML = buttonName;
+//             buttonElement.style = "background-color: grey; color:white; font-size: 1rem"
+
+    
+//     });
+
+
+let getAdventureMovies = () => {
+    let moviesCategory = movies.filter((genre) => {
+        console.log(genre)
+        return genre === "Adventure"
+    })
+    thumbnailCreator(getAdventureMovies);
+};
+
+let getScienceFictionMovies = () => {
+    let moviesCategory = movies.filter((genre) => {
+        return genre.name === "ScienceFiction"
+    })
+    thumbnailCreator(getScienceFictionMovies);  
+}
+
+let getFantasyMovies = () => {
+    let moviesCategory = movies.filter((genre) => {
+        return genre === "Fantasy"
+    })
+    thumbnailCreator(getFantasyMovies);    
+} 
+
+let getAllMovies = () => {
+    let moviesCategory = movies.forEach((movie) => {
+        return movie
+    })
+    thumbnailCreator(getAllMovies);    
+}   
+ 
 
 let thumbnailCreator = (imageurl, title, genre, release, description, director) => {
     let elementContainer = document.createElement("div");
@@ -203,7 +253,6 @@ let thumbnailCreator = (imageurl, title, genre, release, description, director) 
               imageElement.src = imageurl;
               imageContainer.appendChild(imageElement);
               
-    
         // Movie DETAILS CONTAINER + Right(div)
         let movieDetailsContainer = document.createElement("div");
             movieDetailsContainer.classList.add("detailsContainer-right-col")
@@ -212,7 +261,7 @@ let thumbnailCreator = (imageurl, title, genre, release, description, director) 
 
             let movieTitle = document.createElement("h2");
             movieDetailsContainer.appendChild(movieTitle);
-            movieTitle.innerText = title;
+            movieTitle.innerHTML = title;
 
             let movieGenre = document.createElement("h2");
             movieDetailsContainer.appendChild(movieGenre);
